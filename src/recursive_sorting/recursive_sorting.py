@@ -50,31 +50,46 @@ def merge_sort(arr):
 # implement an in-place merge sort algorithm
 def merge_in_place(arr, start, mid, end):
 
+    right_start = mid + 1
 
+    if(arr[mid] <= arr[right_start]):
+        return arr
 
-    while len(start) > 0 and len(end) > 0:
-        if start[0] <= end[0]:
-            merged_arr.append(start[0])
-            start = start[1:]
+    while (start <= mid and right_start <= end):
+        print('start', start, 'mid', mid, 'end', end)
+        if arr[start] <= arr[right_start]:
+            #its already in the right place, so increment l/start
+            start +=1
         else:
-            merged_arr.append(end[0])
-            end = end[1:]
+            value = arr[right_start]
+            index = right_start
+            # arr.insert(index, value)
 
-    return arr + start + end
+            while (index != start): 
+                arr[index] = arr[index - 1]; 
+                index -= 1; 
+              
+            arr[start] = value; 
+
+            start+=1
+            mid+=1
+            right_start+=1
+
+    return arr
 
 
 def merge_sort_in_place(arr, l, r):
     # Your code here
 
-    if len(arr) <= 1:
+    if l == r:
         return arr
     else:
-        mid = len(arr)//2
-        start 
-        end = arr[r:]
-        print('start', start, 'end', end)
-        sorted_a = merge_sort_in_place(arr, start[0], end[0])
-        arr = merge_in_place(arr, start, mid, end)
+        mid = (l + r)//2
+        #sorting left half of array
+        merge_sort_in_place(arr, l, mid)
+        #sorting right half of array
+        merge_sort_in_place(arr, mid+1, r)
+        arr = merge_in_place(arr, l, mid, r)
 
     return arr
 
