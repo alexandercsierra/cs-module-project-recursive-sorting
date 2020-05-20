@@ -70,7 +70,7 @@ def merge_sort_in_place(arr, l, r):
         return arr
     else:
         mid = len(arr)//2
-        start = arr[l:mid]
+        start 
         end = arr[r:]
         print('start', start, 'end', end)
         sorted_a = merge_sort_in_place(arr, start[0], end[0])
